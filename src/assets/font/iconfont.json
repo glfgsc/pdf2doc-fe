@@ -1,0 +1,86 @@
+{
+  "id": "4771547",
+  "name": "coin-cat",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11264150",
+      "name": "文件_格式转换",
+      "font_class": "wenjian_geshizhuanhuan",
+      "unicode": "e6b9",
+      "unicode_decimal": 59065
+    },
+    {
+      "icon_id": "1277698",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "5916403",
+      "name": "DOCX",
+      "font_class": "DOCX",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "15838516",
+      "name": "pdf",
+      "font_class": "pdf",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
+      "icon_id": "11155789",
+      "name": "postgresql",
+      "font_class": "postgresql",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "37434609",
+      "name": "Mysql",
+      "font_class": "Mysql",
+      "unicode": "e788",
+      "unicode_decimal": 59272
+    },
+    {
+      "icon_id": "37434658",
+      "name": "Trino",
+      "font_class": "Trino",
+      "unicode": "e78a",
+      "unicode_decimal": 59274
+    },
+    {
+      "icon_id": "666885",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "4268507",
+      "name": "个人中心",
+      "font_class": "gerenzhongxin",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "11202450",
+      "name": "新建查询",
+      "font_class": "xinjianchaxun1",
+      "unicode": "e6bd",
+      "unicode_decimal": 59069
+    },
+    {
+      "icon_id": "7139472",
+      "name": "数据连接",
+      "font_class": "shujulianjie",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    }
+  ]
+}
