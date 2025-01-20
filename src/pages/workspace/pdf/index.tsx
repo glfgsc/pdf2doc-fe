@@ -67,9 +67,9 @@ const PdfToDoc = () => {
     const props: UploadProps = {
         name: 'file',
         maxCount: 1,
-        accept: '.pdf',
+        accept: '.pdf,.docx',
         beforeUpload: (file) => {
-            setFileList([...fileList, file]);
+            setFileList([file]);
             return false;
         },
         onDrop(e) {
@@ -115,40 +115,16 @@ const PdfToDoc = () => {
         switch (mode) {
             case 'old':
                 let oldRes = await downloadOldFile({id: record.id});
-                let pat = new RegExp('filename=([^;]+\\.[^\\.;]+)');
-                let contentDisposition;
-                if (oldRes.headers['content-disposition']) contentDisposition = oldRes.headers['content-disposition'];
-                let result = pat.exec(decodeURI(contentDisposition));
-                let fileName : any = result && result[1];
-                    
-                let blob = new Blob([oldRes.data], { type: record.type === 'pdf' ? 'application/pdf' : 'application/docx' });
-                let url = URL.createObjectURL(blob);
-                let link = document.createElement('a');
-                link.href = url;
-                link.download = fileName + record.type === 'pdf' ? '.pdf' : '.docx'; // 设置下载文件的文件名
-                link.click();
+                window.open(oldRes.data);
                 break;
             case 'new':
                 let newRes = await downloadNewFile({id: record.id});
-                pat = new RegExp('filename=([^;]+\\.[^\\.;]+)');
-                if (newRes.headers['content-disposition']) contentDisposition = newRes.headers['content-disposition'];
-                result = pat.exec(decodeURI(contentDisposition));
-                fileName = result[1];
-                console.log( typeof result);
-                
-                blob = new Blob([newRes.data], { type: record.type === 'pdf' ? 'application/docx' : 'application/pdf' });
-                url = URL.createObjectURL(blob);
-                link = document.createElement('a');
-                link.href = url;
-                link.download = fileName + record.type === 'pdf' ? '.docx' : '.pdf'; // 设置下载文件的文件名
-                link.click();
+                window.open(newRes.data);
                 break;
             default:
                 break;
         }
     }
-
-    
 
     const deletePdf = async (id: number) => {
         await deleteHistory({id: id});
@@ -170,13 +146,17 @@ const PdfToDoc = () => {
     return (
         <div>
             {contextHolder}
+            <div className={styles.header}>
+                <Iconfont size={20} code={'\ue656'}/>
+                <span className={styles.title}>PDF,WORD在线一键转换</span>
+            </div>
             <Dragger {...props}>
                 <p className="ant-upload-drag-icon">
                 <InboxOutlined />
                 </p>
                 <p className="ant-upload-text">点击上传或拖拽文件至此区域上传</p>
                 <p className="ant-upload-hint">
-                    仅支持pdf格式文件
+                    支持pdf,docx格式文件
                 </p>
             </Dragger>
             <Button
@@ -209,7 +189,7 @@ const PdfToDoc = () => {
                         <div >
                             <Tooltip  placement='right' title={'下载pdf'}>
                                 <Button 
-                                disabled={record.status !== 1 && record.status !== 2}
+                                disabled={record.type === 'pdf' ? [0,3,4,5].includes(record.status) : record.status !== 2}
                                 type='link'
                                 onClick={() => downloadFile(record,record.type === 'docx' ? 'new' : 'old')} 
                                 className={styles.primaryIcon}>
@@ -218,7 +198,7 @@ const PdfToDoc = () => {
                             </Tooltip>
                             <Tooltip  placement='right' title={'下载docx'}>
                                 <Button
-                                disabled={ record.status !== 2}
+                                disabled={ record.type === 'pdf' ? record.status !== 2 : [0,3,4,5].includes(record.status)}
                                 type='link'
                                 onClick={() => downloadFile(record,record.type === 'pdf' ? 'new' : 'old')} 
                                 className={styles.primaryIcon}>

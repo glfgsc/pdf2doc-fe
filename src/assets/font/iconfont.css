@@ -1,59 +1,63 @@
 @font-face {
-  font-family: iconfont; /* Project id 4771547 */
-  src: url('iconfont.woff2?t=1737183508134') format('woff2'),
-       url('iconfont.woff?t=1737183508134') format('woff'),
-       url('iconfont.ttf?t=1737183508134') format('truetype');
+  font-family: "iconfont"; /* Project id 4771547 */
+  src: url('iconfont.woff2?t=1737342766648') format('woff2'),
+       url('iconfont.woff?t=1737342766648') format('woff'),
+       url('iconfont.ttf?t=1737342766648') format('truetype');
 }
 
 .iconfont {
-  font-family: iconfont !important;
+  font-family: "iconfont" !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-wenjian_geshizhuanhuan::before {
+.icon-wendang:before {
+  content: "\e656";
+}
+
+.icon-wenjian_geshizhuanhuan:before {
   content: "\e6b9";
 }
 
-.icon-shanchu::before {
+.icon-shanchu:before {
   content: "\e653";
 }
 
-.icon-DOCX::before {
+.icon-DOCX:before {
   content: "\e614";
 }
 
-.icon-pdf::before {
+.icon-pdf:before {
   content: "\e67a";
 }
 
-.icon-postgresql::before {
+.icon-postgresql:before {
   content: "\e600";
 }
 
-.icon-Mysql::before {
+.icon-Mysql:before {
   content: "\e788";
 }
 
-.icon-Trino::before {
+.icon-Trino:before {
   content: "\e78a";
 }
 
-.icon-shezhi::before {
+.icon-shezhi:before {
   content: "\e68f";
 }
 
-.icon-gerenzhongxin::before {
+.icon-gerenzhongxin:before {
   content: "\e61d";
 }
 
-.icon-xinjianchaxun1::before {
+.icon-xinjianchaxun1:before {
   content: "\e6bd";
 }
 
-.icon-shujulianjie::before {
+.icon-shujulianjie:before {
   content: "\e619";
 }
 

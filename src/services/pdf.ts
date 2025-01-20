@@ -12,17 +12,11 @@ export function getConvertHistory(params: any){
 }
 
 export function downloadOldFile(params: any){
-    return request('/pdf/downloadOldFile','get',params,{
-        responseType: 'blob',
-        headers: {'Accept': '*/*'}
-    })
+    return request('/pdf/downloadOldFileUrl','get',params)
 }
 
 export function downloadNewFile(params: any){
-    return request('/pdf/downloadNewFile','get',params,{
-        responseType: 'blob',
-        headers: {'Accept': '*/*'}
-    })
+    return request('/pdf/downloadNewFileUrl','get',params)
 }
 
 export function deleteHistory(params: any){

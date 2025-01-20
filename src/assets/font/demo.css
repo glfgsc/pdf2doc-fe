@@ -119,8 +119,8 @@
   font-size: 42px;
   margin: 10px auto;
   color: #333;
-  transition: font-size 0.25s linear, width 0.25s linear;
-  transition: font-size 0.25s linear, width 0.25s linear;
+  -webkit-transition: font-size 0.25s linear, width 0.25s linear;
+  -moz-transition: font-size 0.25s linear, width 0.25s linear;
   transition: font-size 0.25s linear, width 0.25s linear;
 }
 
@@ -131,13 +131,10 @@
 .icon_lists .svg-icon {
   /* 通过设置 font-size 来改变图标大小 */
   width: 1em;
-
   /* 图标和文字相邻时，垂直对齐 */
   vertical-align: -0.15em;
-
   /* 通过设置 color 来改变 SVG 的颜色/fill */
-  fill: currentcolor;
-
+  fill: currentColor;
   /* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
       normalize.css 中也包含这行 */
   overflow: hidden;
@@ -177,7 +174,7 @@
 .markdown h5,
 .markdown h6 {
   color: #404040;
-  margin: 1.6em 0 0.6em;
+  margin: 1.6em 0 0.6em 0;
   font-weight: 500;
   clear: both;
 }
@@ -265,7 +262,7 @@
 
 .markdown>table {
   border-collapse: collapse;
-  border-spacing: 0;
+  border-spacing: 0px;
   empty-cells: show;
   border: 1px solid #e9e9e9;
   width: 95%;
@@ -331,7 +328,7 @@
   display: block;
   background: white;
   padding: 0.5em;
-  color: #333;
+  color: #333333;
   overflow-x: auto;
 }
 
@@ -368,7 +365,7 @@
 }
 
 .hljs-tag {
-  color: #333;
+  color: #333333;
 }
 
 .hljs-title,
@@ -395,10 +392,8 @@
 }
 
 /* 代码高亮 */
-
 /* PrismJS 1.15.0
 https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript */
-
 /**
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
@@ -416,19 +411,21 @@ pre[class*="language-"] {
   word-break: normal;
   word-wrap: normal;
   line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
   tab-size: 4;
-  tab-size: 4;
-  tab-size: 4;
-  hyphens: none;
-  hyphens: none;
-  hyphens: none;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
   hyphens: none;
 }
 
-pre[class*="language-"]::selection,
-pre[class*="language-"] ::selection,
-code[class*="language-"]::selection,
-code[class*="language-"] ::selection {
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
   text-shadow: none;
   background: #b3d4fc;
 }
@@ -442,6 +439,7 @@ code[class*="language-"] ::selection {
 }
 
 @media print {
+
   code[class*="language-"],
   pre[class*="language-"] {
     text-shadow: none;
@@ -507,7 +505,7 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string {
   color: #9a6e3a;
-  background: hsla(0deg, 0%, 100%, 50%);
+  background: hsla(0, 0%, 100%, .5);
 }
 
 .token.atrule,

@@ -10,7 +10,8 @@ export interface IConvertHistory {
     createTime: string,
     newPath: string,
     oldPath: string,
-    status: number
+    status: number,
+    type: string
 }
 
 export interface IQueryHistoryParams {
