@@ -1,4 +1,4 @@
-import { IUploadPdfFile } from "@/typings";
+
 import request from "./base";
 
 export function uploadPdfFile(params: any){
