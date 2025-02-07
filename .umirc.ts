@@ -11,10 +11,10 @@ export default defineConfig({
     },
     proxy: {
         '/api': {
-            target: 'http://localhost:8081',
+            target: 'http://www.icoincat.cn',
             changeOrigin: true,
             secure: false,
-            'pathRewrite': { '^/api' : '' }
+            // 'pathRewrite': { '^/api' : '' }
         },
     },
     routes: [
@@ -24,20 +24,27 @@ export default defineConfig({
             layout: false,
             routes: [
                 {
-                path: '/pdf',
-                component: 'workspace'
+                    path: '/',
+                    redirect: '/login'
                 },
                 {
-                path: '/setting',
-                component: 'workspace'
+                    path: '/pdf',
+                    component: '@/pages/workspace',
+                    wrappers: ['@/wrappers']
                 },
                 {
-                path: '/user',
-                component: 'workspace'
+                    path: '/setting',
+                    component: '@/pages/workspace',
+                    wrappers: ['@/wrappers']
                 },
                 {
-                path: '/login',
-                component: 'login'
+                    path: '/user',
+                    component: '@/pages/workspace',
+                    wrappers: ['@/wrappers']
+                },
+                {
+                    path: '/login',
+                    component: 'login'
                 }
             ]
         }

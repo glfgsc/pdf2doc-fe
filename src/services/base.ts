@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { getToken } from '@/utils/localStorage';
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 const httpUtil = axios.create({
@@ -15,6 +16,10 @@ httpUtil.interceptors.request.use(config => {
     }
     if (config.isError) {
         config.isError.value = false;
+    }
+    const token = getToken();
+    if (token) {
+      config.headers.Authorization = "Bearer " + token;
     }
     return config
 }, error => {

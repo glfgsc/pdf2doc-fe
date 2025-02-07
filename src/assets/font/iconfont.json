@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1727345",
+      "name": "16寄件、发送",
+      "font_class": "jijianfasong",
+      "unicode": "e893",
+      "unicode_decimal": 59539
+    },
+    {
+      "icon_id": "4552970",
+      "name": "邮箱",
+      "font_class": "youxiang",
+      "unicode": "e908",
+      "unicode_decimal": 59656
+    },
+    {
+      "icon_id": "6416858",
+      "name": "密码",
+      "font_class": "mima",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "10232786",
+      "name": "用户名",
+      "font_class": "yonghuming",
+      "unicode": "e78f",
+      "unicode_decimal": 59279
+    },
+    {
       "icon_id": "741956",
       "name": "文档",
       "font_class": "wendang",

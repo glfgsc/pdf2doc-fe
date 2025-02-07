@@ -35,4 +35,16 @@ export function getPrimaryColor(): PrimaryColorType {
 export function setPrimaryColor(primaryColor: PrimaryColorType) {
     return localStorage.setItem('primary-color', primaryColor);
 }
+
+export function setToken(token: string){
+    return localStorage.setItem('token',token);
+}
+
+export function getToken(){
+    return localStorage.getItem('token');
+}
+
+export function removeToken(){
+    localStorage.removeItem('token');
+}
   

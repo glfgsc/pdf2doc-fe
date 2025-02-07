@@ -7,6 +7,7 @@ import { IConvertHistory, IQueryHistoryParams } from '@/typings';
 import Iconfont from '@/components/Iconfont';
 import { Tooltip } from 'antd/lib';
 import styles from './index.less';
+import { getToken } from '@/utils/localStorage';
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
@@ -114,11 +115,11 @@ const PdfToDoc = () => {
     const downloadFile = async (record: IConvertHistory,mode: string) => {
         switch (mode) {
             case 'old':
-                let oldRes = await downloadOldFile({id: record.id});
+                let oldRes = await downloadOldFile({id: record.id,token: getToken()});
                 window.open(oldRes.data);
                 break;
             case 'new':
-                let newRes = await downloadNewFile({id: record.id});
+                let newRes = await downloadNewFile({id: record.id,token: getToken()});
                 window.open(newRes.data);
                 break;
             default:
