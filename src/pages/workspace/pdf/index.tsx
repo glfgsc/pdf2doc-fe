@@ -8,6 +8,8 @@ import Iconfont from '@/components/Iconfont';
 import { Tooltip } from 'antd/lib';
 import styles from './index.less';
 import { getToken } from '@/utils/localStorage';
+import { IFileTool } from '@/typings/tool';
+import FileTool from '@/components/FileTool';
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
@@ -49,6 +51,39 @@ const PdfToDoc = () => {
             status: 4,
             label: '转换失败',
             color: 'error'
+        }
+    ];
+
+    const tools : IFileTool[] = [
+        {
+            title: 'PDF转换',
+            children: [
+                {
+                    label: 'PDF转WORD',
+                    icon: '\ue608'
+                },
+                {
+                    label: 'PDF转图片',
+                    icon: '\ue617'
+                },
+                {
+                    label: 'PDF转EXCEL',
+                    icon: '\ue61a'
+                },
+                {
+                    label: 'PDF转PPT',
+                    icon: '\ue615'
+                }
+            ]
+        },
+        {
+            title: 'WORD转换',
+            children: [
+                {
+                    label: 'WORD转PDF',
+                    icon: '\ue61b'
+                }
+            ]
         }
     ];
 
@@ -148,10 +183,11 @@ const PdfToDoc = () => {
         <div>
             {contextHolder}
             <div className={styles.header}>
-                <Iconfont size={20} code={'\ue656'}/>
-                <span className={styles.title}>PDF,WORD在线一键转换</span>
+                {/* <Iconfont size={20} code={'\ue656'}/> */}
+                {/* <span className={styles.title}>PDF</span> */}
+                <FileTool tools={tools}></FileTool>
             </div>
-            <Dragger {...props}>
+            {/* <Dragger {...props}>
                 <p className="ant-upload-drag-icon">
                 <InboxOutlined />
                 </p>
@@ -159,8 +195,8 @@ const PdfToDoc = () => {
                 <p className="ant-upload-hint">
                     支持pdf,docx格式文件
                 </p>
-            </Dragger>
-            <Button
+            </Dragger> */}
+            {/* <Button
                 type="primary"
                 onClick={handleUpload}
                 disabled={fileList.length === 0}
@@ -168,7 +204,7 @@ const PdfToDoc = () => {
                 style={{ marginTop: 16 }}
             >
                 {uploading ? '上传中' : '开始上传'}
-            </Button>
+            </Button> */}
             <div className={styles.tableContainer}>
             <Divider variant="solid" className={styles.divider}>
                 <span style={{fontWeight: 'bold'}}>操作历史</span>

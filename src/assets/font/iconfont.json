@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "38476371",
+      "name": "word转PDF",
+      "font_class": "wordzhuanPDF",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "32155683",
+      "name": "pdf转word",
+      "font_class": "pdfzhuanword",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "38476365",
+      "name": "PDF转PPT",
+      "font_class": "PDFzhuanPPT",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "41563924",
+      "name": "PDF转Excel",
+      "font_class": "PDFzhuanExcel",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "38476367",
+      "name": "PDF转图片",
+      "font_class": "PDFzhuantupian",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
       "icon_id": "1727345",
       "name": "16寄件、发送",
       "font_class": "jijianfasong",

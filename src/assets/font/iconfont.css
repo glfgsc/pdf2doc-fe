@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4771547 */
-  src: url('iconfont.woff2?t=1738892688921') format('woff2'),
-       url('iconfont.woff?t=1738892688921') format('woff'),
-       url('iconfont.ttf?t=1738892688921') format('truetype');
+  src: url('iconfont.woff2?t=1739785384793') format('woff2'),
+       url('iconfont.woff?t=1739785384793') format('woff'),
+       url('iconfont.ttf?t=1739785384793') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,26 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-wordzhuanPDF:before {
+  content: "\e61b";
+}
+
+.icon-pdfzhuanword:before {
+  content: "\e608";
+}
+
+.icon-PDFzhuanPPT:before {
+  content: "\e615";
+}
+
+.icon-PDFzhuanExcel:before {
+  content: "\e61a";
+}
+
+.icon-PDFzhuantupian:before {
+  content: "\e617";
 }
 
 .icon-jijianfasong:before {
