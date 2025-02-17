@@ -60,19 +60,27 @@ const PdfToDoc = () => {
             children: [
                 {
                     label: 'PDF转WORD',
-                    icon: '\ue608'
+                    icon: '\ue608',
+                    source: 'PDF',
+                    target: 'WORD'
                 },
                 {
                     label: 'PDF转图片',
-                    icon: '\ue617'
+                    icon: '\ue617',
+                    source: 'PDF',
+                    target: 'IMG'
                 },
                 {
                     label: 'PDF转EXCEL',
-                    icon: '\ue61a'
+                    icon: '\ue61a',
+                    source: 'PDF',
+                    target: 'EXCEL'
                 },
                 {
                     label: 'PDF转PPT',
-                    icon: '\ue615'
+                    icon: '\ue615',
+                    source: 'PDF',
+                    target: 'PPT'
                 }
             ]
         },
@@ -81,7 +89,9 @@ const PdfToDoc = () => {
             children: [
                 {
                     label: 'WORD转PDF',
-                    icon: '\ue61b'
+                    icon: '\ue61b',
+                    source: 'WORD',
+                    target: 'PDF'
                 }
             ]
         }

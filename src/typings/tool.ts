@@ -5,5 +5,7 @@ export interface IFileTool{
 
 export interface IFileToolChildren{
     label: string,
-    icon: string
+    icon: string,
+    source: string,
+    target: string
 }
