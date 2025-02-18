@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { InboxOutlined } from '@ant-design/icons';
-import { UploadProps,UploadFile,GetProp,Table,Space,Tag,Pagination,Divider } from 'antd';
-import { message, Upload,Button } from 'antd';
-import { uploadPdfFile,getConvertHistory,downloadOldFile,downloadNewFile,deleteHistory } from '@/services';
+import { UploadProps,GetProp,Table,Space,Tag,Pagination,Divider } from 'antd';
+import { message, Button } from 'antd';
+import { getConvertHistory,downloadOldFile,downloadNewFile,deleteHistory } from '@/services';
 import { IConvertHistory, IQueryHistoryParams } from '@/typings';
 import Iconfont from '@/components/Iconfont';
 import { Tooltip } from 'antd/lib';
@@ -14,10 +13,7 @@ import FileTool from '@/components/FileTool';
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 const PdfToDoc = () => {
-    const { Dragger } = Upload;
     const { Column, ColumnGroup } = Table;
-    const [fileList, setFileList] = useState<UploadFile[]>([]);
-    const [uploading, setUploading] = useState(false);
     const [data,setData] = useState<IConvertHistory[]>([]);
     const [messageApi, contextHolder] = message.useMessage();
     const [queryHistoryParams,setQueryHistoryParams] = useState<IQueryHistoryParams>({
@@ -60,27 +56,87 @@ const PdfToDoc = () => {
             children: [
                 {
                     label: 'PDF转WORD',
-                    icon: '\ue608',
+                    icon: '\uedd5',
                     source: 'PDF',
-                    target: 'WORD'
+                    target: 'WORD',
+                    formatType: [
+                        {
+                            label: 'docx',
+                            value: 'DOCX'
+                        },
+                        {
+                            label: 'doc',
+                            value: 'DOC'
+                        }
+                    ]
                 },
                 {
                     label: 'PDF转图片',
-                    icon: '\ue617',
+                    icon: '\ue63e',
                     source: 'PDF',
-                    target: 'IMG'
+                    target: '图片',
+                    formatType: [{
+                        label: 'svg',
+                        value: 'SVG'
+                    },{
+                        label: 'png',
+                        value: 'PNG'
+                    },{
+                        label: 'jpeg',
+                        value: 'JPEG'
+                    }]
                 },
                 {
                     label: 'PDF转EXCEL',
-                    icon: '\ue61a',
+                    icon: '\ue609',
                     source: 'PDF',
-                    target: 'EXCEL'
+                    target: 'EXCEL',
+                    formatType: [
+                        {
+                            label: 'xls',
+                            value: 'XLS'
+                        },
+                        {
+                            label: 'xlsx',
+                            value: 'XLSX'
+                        }
+                    ]
                 },
                 {
                     label: 'PDF转PPT',
-                    icon: '\ue615',
+                    icon: '\ue60c',
                     source: 'PDF',
-                    target: 'PPT'
+                    target: 'PPT',
+                    formatType: [
+                        {
+                            label: 'pptx',
+                            value: 'PPTX'
+                        }
+                    ]
+                },
+                {
+                    label: 'PDF转HTML',
+                    icon: '\ue65a',
+                    source: 'PDF',
+                    target: 'HTML',
+                    formatType: [
+                        {
+                            label: 'html',
+                            value: 'HTML'
+                        }
+                    ]
+                },
+                {
+                    label: 'PDF转TXT',
+                    icon: '\ue680',
+                    source: 'PDF',
+                    target: 'TXT',
+                    formatType: [
+                        {
+                            label: 'txt',
+                            value: 'TXT'
+                        }
+                    ]
                 }
             ]
         },
@@ -89,9 +145,41 @@ const PdfToDoc = () => {
             children: [
                 {
                     label: 'WORD转PDF',
-                    icon: '\ue61b',
+                    icon: '\ue67a',
                     source: 'WORD',
-                    target: 'PDF'
+                    target: 'PDF',
+                    formatType: [
+                        {
+                            label: 'pdf',
+                            value: 'PDF'
+                        }
+                    ]
+                },
+                {
+                    label: 'WORD转图片',
+                    icon: '\ue63e',
+                    source: 'WORD',
+                    target: '图片',
+                    formatType: [{
+                        label: 'svg',
+                        value: 'SVG'
+                    },{
+                        label: 'png',
+                        value: 'PNG'
+                    },{
+                        label: 'jpeg',
+                        value: 'JPEG'
+                    }]
+                },
+                {
+                    label: 'WORD转HTML',
+                    icon: '\ue65a',
+                    source: 'WORD',
+                    target: 'HTML',
+                    formatType: [{
+                        label: 'html',
+                        value: 'HTML'
+                    }]
                 }
             ]
         }
@@ -110,42 +198,7 @@ const PdfToDoc = () => {
             clearInterval(interval); // 清除定时器
         };
     }, []);
-    const props: UploadProps = {
-        name: 'file',
-        maxCount: 1,
-        accept: '.pdf,.docx',
-        beforeUpload: (file) => {
-            setFileList([file]);
-            return false;
-        },
-        onDrop(e) {
-            console.log('Dropped files', e.dataTransfer.files);
-        },
-        onRemove: (file) => {
-            setFileList([]);
-        }
-    };
 
-    const handleUpload = async () => {
-        const formData = new FormData();
-        fileList.forEach((file) => {
-            formData.append('file', file as FileType);
-        });
-        setUploading(true);
-        try{
-            let uploadRes = await uploadPdfFile(formData);
-            await getHistoryData();
-            messageApi.open({
-                type: 'success',
-                content: `转换任务【${uploadRes.data.id}】已添加`
-            });
-        }catch(err){
-            console.log(err);
-        }finally{
-            setUploading(false);
-        }
-    }
-    
     const getHistoryData = async () => {
         let res = await getConvertHistory(queryHistoryParams);
         setData(res.data.map((item:any)=>{
@@ -193,28 +246,8 @@ const PdfToDoc = () => {
         <div>
             {contextHolder}
             <div className={styles.header}>
-                {/* <Iconfont size={20} code={'\ue656'}/> */}
-                {/* <span className={styles.title}>PDF</span> */}
-                <FileTool tools={tools}></FileTool>
+                <FileTool tools={tools} onUpload={() => getHistoryData()}></FileTool>
             </div>
-            {/* <Dragger {...props}>
-                <p className="ant-upload-drag-icon">
-                <InboxOutlined />
-                </p>
-                <p className="ant-upload-text">点击上传或拖拽文件至此区域上传</p>
-                <p className="ant-upload-hint">
-                    支持pdf,docx格式文件
-                </p>
-            </Dragger> */}
-            {/* <Button
-                type="primary"
-                onClick={handleUpload}
-                disabled={fileList.length === 0}
-                loading={uploading}
-                style={{ marginTop: 16 }}
-            >
-                {uploading ? '上传中' : '开始上传'}
-            </Button> */}
             <div className={styles.tableContainer}>
             <Divider variant="solid" className={styles.divider}>
                 <span style={{fontWeight: 'bold'}}>操作历史</span>
@@ -222,7 +255,8 @@ const PdfToDoc = () => {
                 <Table<IConvertHistory> dataSource={data} rowKey="id" pagination={false}>
                     <Column title="ID" dataIndex="id" key="id" />
                     <Column title="文件名" dataIndex="name" key="name" />
-                    <Column title="文件类型" dataIndex="type" key="type" />
+                    <Column title="源文件类型" dataIndex="sourceType" key="sourceType" />
+                    <Column title="目标文件类型" dataIndex="targetType" key="targetType" />
                     <Column title="创建时间" dataIndex="createTime" key="createTime" />
                     <Column title="更新时间" dataIndex="updateTime" key="updateTime" />
                     <Column title="状态"  key="id" dataIndex="status" render={(status: number) => (
@@ -234,22 +268,22 @@ const PdfToDoc = () => {
                     title="操作"
                     render={(_: any, record: IConvertHistory) => (
                         <div >
-                            <Tooltip  placement='right' title={'下载pdf'}>
+                            <Tooltip  placement='right' title={'下载源文件'}>
                                 <Button 
-                                disabled={record.type === 'pdf' ? [0,3,4,5].includes(record.status) : record.status !== 2}
+                                disabled={[0,3,4,5].includes(record.status)}
                                 type='link'
-                                onClick={() => downloadFile(record,record.type === 'docx' ? 'new' : 'old')} 
+                                onClick={() => downloadFile(record,'old')} 
                                 className={styles.primaryIcon}>
-                                    <Iconfont size={16} code={'\ue67a'}/>
+                                    <Iconfont size={16} code={'\ue654'}/>
                                 </Button>
                             </Tooltip>
-                            <Tooltip  placement='right' title={'下载docx'}>
+                            <Tooltip  placement='right' title={'下载目标文件'}>
                                 <Button
-                                disabled={ record.type === 'pdf' ? record.status !== 2 : [0,3,4,5].includes(record.status)}
+                                disabled={ record.status !== 2}
                                 type='link'
-                                onClick={() => downloadFile(record,record.type === 'pdf' ? 'new' : 'old')} 
+                                onClick={() => downloadFile(record,'new')} 
                                 className={styles.primaryIcon}>
-                                    <Iconfont size={16} code={'\ue614'}/>
+                                    <Iconfont size={16} code={'\ue613'}/>
                                 </Button>
                             </Tooltip>
                             <Tooltip  placement='right' title={'删除'}>

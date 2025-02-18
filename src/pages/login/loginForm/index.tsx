@@ -26,7 +26,7 @@ const LoginForm = ({onRegister,onForgetPassword}) => {
         try{
           let passwordRes = await userPasswordLogin(values);
           setToken(passwordRes.data.token);
-          navigator('/pdf');
+          navigator('/document');
         }catch(err){
           messageApi.open({
             type: 'error',
@@ -40,7 +40,7 @@ const LoginForm = ({onRegister,onForgetPassword}) => {
         try{
           let emailRes = await userEmailLogin(values);
           setToken(emailRes.data.token);
-          navigator('/pdf');
+          navigator('/document');
         }catch(err){
           messageApi.open({
             type: 'error',

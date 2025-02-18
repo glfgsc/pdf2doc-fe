@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4771547 */
-  src: url('iconfont.woff2?t=1739785384793') format('woff2'),
-       url('iconfont.woff?t=1739785384793') format('woff'),
-       url('iconfont.ttf?t=1739785384793') format('truetype');
+  src: url('iconfont.woff2?t=1739863154104') format('woff2'),
+       url('iconfont.woff?t=1739863154104') format('woff'),
+       url('iconfont.ttf?t=1739863154104') format('truetype');
 }
 
 .iconfont {
@@ -13,24 +13,44 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-wordzhuanPDF:before {
-  content: "\e61b";
+.icon-tupian:before {
+  content: "\e63e";
 }
 
-.icon-pdfzhuanword:before {
-  content: "\e608";
+.icon-html:before {
+  content: "\e65a";
 }
 
-.icon-PDFzhuanPPT:before {
-  content: "\e615";
+.icon-xml:before {
+  content: "\e945";
 }
 
-.icon-PDFzhuanExcel:before {
-  content: "\e61a";
+.icon-ppt:before {
+  content: "\e60c";
 }
 
-.icon-PDFzhuantupian:before {
-  content: "\e617";
+.icon-Word:before {
+  content: "\edd5";
+}
+
+.icon-text:before {
+  content: "\e680";
+}
+
+.icon-LaTeX:before {
+  content: "\e60d";
+}
+
+.icon-excel:before {
+  content: "\e609";
+}
+
+.icon-target:before {
+  content: "\e613";
+}
+
+.icon-yuanwenjian:before {
+  content: "\e654";
 }
 
 .icon-jijianfasong:before {

@@ -28,7 +28,7 @@ export default defineConfig({
                     redirect: '/login'
                 },
                 {
-                    path: '/pdf',
+                    path: '/document',
                     component: '@/pages/workspace',
                     wrappers: ['@/wrappers']
                 },

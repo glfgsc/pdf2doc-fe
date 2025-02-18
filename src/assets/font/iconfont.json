@@ -6,39 +6,74 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "38476371",
-      "name": "word转PDF",
-      "font_class": "wordzhuanPDF",
-      "unicode": "e61b",
-      "unicode_decimal": 58907
+      "icon_id": "145454",
+      "name": "图片",
+      "font_class": "tupian",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
     },
     {
-      "icon_id": "32155683",
-      "name": "pdf转word",
-      "font_class": "pdfzhuanword",
-      "unicode": "e608",
-      "unicode_decimal": 58888
+      "icon_id": "1160156",
+      "name": "html",
+      "font_class": "html",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
     },
     {
-      "icon_id": "38476365",
-      "name": "PDF转PPT",
-      "font_class": "PDFzhuanPPT",
-      "unicode": "e615",
-      "unicode_decimal": 58901
+      "icon_id": "1445642",
+      "name": "xml",
+      "font_class": "xml",
+      "unicode": "e945",
+      "unicode_decimal": 59717
     },
     {
-      "icon_id": "41563924",
-      "name": "PDF转Excel",
-      "font_class": "PDFzhuanExcel",
-      "unicode": "e61a",
-      "unicode_decimal": 58906
+      "icon_id": "1453456",
+      "name": "ppt",
+      "font_class": "ppt",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
     },
     {
-      "icon_id": "38476367",
-      "name": "PDF转图片",
-      "font_class": "PDFzhuantupian",
-      "unicode": "e617",
-      "unicode_decimal": 58903
+      "icon_id": "6808504",
+      "name": "Word",
+      "font_class": "Word",
+      "unicode": "edd5",
+      "unicode_decimal": 60885
+    },
+    {
+      "icon_id": "15838539",
+      "name": "text",
+      "font_class": "text",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "17869441",
+      "name": "LaTeX",
+      "font_class": "LaTeX",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "24816508",
+      "name": "excel",
+      "font_class": "excel",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "8590483",
+      "name": "target",
+      "font_class": "target",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "9018259",
+      "name": "源文件",
+      "font_class": "yuanwenjian",
+      "unicode": "e654",
+      "unicode_decimal": 58964
     },
     {
       "icon_id": "1727345",

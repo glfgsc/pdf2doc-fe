@@ -20,7 +20,7 @@ function IndexPage(){
     //菜单栏
     const menus : IMenu[] = [
         {
-            key: 'pdf',
+            key: 'document',
             icon: '\ue6b9',
             iconFontSize: 20,
             mode: MenuMode.Router,

@@ -31,7 +31,9 @@ const Iconfont = (props: IProps) => {
     <i
       style={
         {
-          '--icon-size': `${size}px`,
+          fontSize: size + 'px',
+          width: size + 'px',
+          height: size + 'px'
         } as any
       }
       className={classnames(className, styles.iconfont)}

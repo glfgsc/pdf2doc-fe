@@ -1,13 +1,16 @@
-import type { IFileTool, IFileToolChildren } from "@/typings";
+import type { IFileTool, IFileToolChildren, IFileToolFormatTypeOptions } from "@/typings";
 import styles from './index.less';
 import Iconfont from "../Iconfont";
-import { Button, Form, Modal, Space, UploadFile } from "antd";
+import { Button, Form, GetProp, Modal, Radio, Space, UploadFile, message } from "antd";
 import BrandLogo from "../BrandLogo";
 import { useForm } from "antd/es/form/Form";
 import { useMemo, useState } from "react";
 import Dragger from "antd/es/upload/Dragger";
 import { InboxOutlined } from '@ant-design/icons';
 import { UploadProps } from "antd/lib";
+import { uploadPdfFile} from '@/services';
+
+type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 export type IModalData =
 | {
@@ -20,7 +23,7 @@ export type IModalData =
 | null
 | false;
 
-const FileTool = (props: {tools: IFileTool[]}) => {
+const FileTool = (props: {tools: IFileTool[],onUpload: Function}) => {
     const [form] = useForm();
     const classNames = {
         header: styles.modalHeader,
@@ -33,13 +36,18 @@ const FileTool = (props: {tools: IFileTool[]}) => {
     const openModal = (params: boolean) => {
         setOpen(params);
     };
+    const [messageApi, contextHolder] = message.useMessage();
     const [fileList, setFileList] = useState<UploadFile[]>([]);
-    const [source,setSource] = useState<string>();
-    const [target,setTarget] = useState<string>();
+    const [source,setSource] = useState<string>('');
+    const [target,setTarget] = useState<string>('');
+    const [formatTypes,setFormatTypes] = useState<IFileToolFormatTypeOptions[]>([]);
+    const [formatType,setFormatType] = useState<string|null>(null);
+    const [uploading, setUploading] = useState(false);
+
     const dragProps: UploadProps = {
         name: 'file',
         maxCount: 1,
-        accept: `.${source?.toLowerCase()}`,
+        accept: `.${source === 'WORD' ? 'doc,.docx' : source?.toLowerCase()}`,
         beforeUpload: (file) => {
             setFileList([file]);
             return false;
@@ -51,6 +59,35 @@ const FileTool = (props: {tools: IFileTool[]}) => {
             setFileList([]);
         }
     };
+
+    const handleUpload = async () => {
+        const formData = new FormData();
+        fileList.forEach((file) => {
+            formData.append('file', file as FileType);
+        });
+        if(formatType){
+            formData.append('targetType',formatType);
+        }else{
+            formData.append('targetType',target);
+        }
+        const fileName = fileList[0].name;        
+        formData.append('sourceType',source === 'WORD' ? fileName.split('.')[1].toUpperCase() : source);
+        setUploading(true);
+        try{
+            let uploadRes = await uploadPdfFile(formData);
+            messageApi.open({
+                type: 'success',
+                content: `转换任务【${uploadRes.data.id}】已添加`
+            });
+            props.onUpload();
+            setOpen(false);
+        }catch(err){
+            console.log(err);
+        }finally{
+            setUploading(false);
+        }
+    }
+
     //modal配置项
     const modalData : IModalData = {
         title: `${source}转${target}`,
@@ -58,7 +95,7 @@ const FileTool = (props: {tools: IFileTool[]}) => {
         onOk: () => {},
         footer: <div className={styles.footer}>
             <Space>
-                <Button type='primary'>确认</Button>
+                <Button type='primary' onClick={handleUpload} loading={uploading}>确认</Button>
                 <Button onClick={()=>openModal(false)}>取消</Button>
             </Space>
         </div>,
@@ -69,7 +106,6 @@ const FileTool = (props: {tools: IFileTool[]}) => {
             >
                 <Form.Item
                 label="上传文件"
-                name="fileList"
                 rules={[{ required: true, message: `请上传${source?.toLowerCase()}格式文件` }]}
                 >
                     <Dragger {...dragProps}>
@@ -78,17 +114,21 @@ const FileTool = (props: {tools: IFileTool[]}) => {
                         </p>
                         <p className="ant-upload-text">点击上传或拖拽文件至此区域上传</p>
                         <p className="ant-upload-hint">
-                            {`支持${source?.toLowerCase()}格式文件`}
+                            {`支持${source === 'WORD' ? 'doc,docx' : source?.toLowerCase()}格式文件`}
                         </p>
                     </Dragger>
                 </Form.Item>
-                <Form.Item
+                {formatTypes.length > 0 ? (<Form.Item
                 label="选择转换格式"
-                name="formatType"
                 rules={[{ required: true, message: `请选择转换格式` }]}
                 >
-
-                </Form.Item>
+                    <Radio.Group
+                    size='large'
+                    value={formatType}
+                    options={formatTypes}
+                    onChange={(e)=>{setFormatType(e.target.value)}}
+                    />
+                </Form.Item>) : <div></div>}
             </Form>
         </div>
     };
@@ -107,21 +147,24 @@ const FileTool = (props: {tools: IFileTool[]}) => {
         }
     }, [modalData]);
 
-    const openFileConvertModal = (source: string,target: string) => {
+    const openFileConvertModal = (source: string,target: string,options: IFileToolFormatTypeOptions[]) => {
         setSource(source);
         setTarget(target);
+        setFormatTypes(options);
+        setFormatType(options.length > 0 ? options[0].value : null);
         setOpen(true);
     }
 
     return <div className={styles.toolContainer}>
+        {contextHolder}
         {props.tools.map((item: IFileTool) => {
-            return <div>
+            return <div key={item.title}>
                 <div className={styles.title}>
                     {item.title}
                 </div>
                 <div className={styles.tool}>
                     {item.children.map((child: IFileToolChildren) => {
-                        return <div className={styles.childrenContainer}  onClick={()=>{openFileConvertModal(child.source,child.target)}}>
+                        return <div key={child.label} className={styles.childrenContainer}  onClick={()=>{openFileConvertModal(child.source,child.target,child.formatType)}}>
                             <Iconfont size={50} code={child.icon}></Iconfont>
                             <div className={styles.childrenText}>
                                 {child.label}

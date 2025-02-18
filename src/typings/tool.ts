@@ -3,9 +3,15 @@ export interface IFileTool{
     children: IFileToolChildren[]
 }
 
+export interface IFileToolFormatTypeOptions{
+    label: string,
+    value: string
+}
+
 export interface IFileToolChildren{
     label: string,
     icon: string,
     source: string,
-    target: string
+    target: string,
+    formatType: IFileToolFormatTypeOptions[]
 }
