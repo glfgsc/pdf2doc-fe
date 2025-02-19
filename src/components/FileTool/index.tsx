@@ -47,7 +47,7 @@ const FileTool = (props: {tools: IFileTool[],onUpload: Function}) => {
     const dragProps: UploadProps = {
         name: 'file',
         maxCount: 1,
-        accept: `.${source === 'WORD' ? 'doc,.docx' : source?.toLowerCase()}`,
+        accept: `.${source === 'WORD' ? 'doc,.docx' : (source === 'EXCEL' ? 'xls,.xlsx' : source?.toLowerCase())}`,
         beforeUpload: (file) => {
             setFileList([file]);
             return false;
@@ -71,7 +71,7 @@ const FileTool = (props: {tools: IFileTool[],onUpload: Function}) => {
             formData.append('targetType',target);
         }
         const fileName = fileList[0].name;        
-        formData.append('sourceType',source === 'WORD' ? fileName.split('.')[1].toUpperCase() : source);
+        formData.append('sourceType',source === 'WORD' || source === 'EXCEL'  ? fileName.split('.')[1].toUpperCase() : source);
         setUploading(true);
         try{
             let uploadRes = await uploadPdfFile(formData);
@@ -114,7 +114,7 @@ const FileTool = (props: {tools: IFileTool[],onUpload: Function}) => {
                         </p>
                         <p className="ant-upload-text">点击上传或拖拽文件至此区域上传</p>
                         <p className="ant-upload-hint">
-                            {`支持${source === 'WORD' ? 'doc,docx' : source?.toLowerCase()}格式文件`}
+                            {`支持${source === 'WORD' ? 'doc,docx' : (source === 'EXCEL' ? 'xls,xlsx' : source?.toLowerCase())}格式文件`}
                         </p>
                     </Dragger>
                 </Form.Item>

@@ -182,6 +182,23 @@ const PdfToDoc = () => {
                     }]
                 }
             ]
+        },
+        {
+            title: 'EXCEL转换',
+            children: [
+                {
+                    label: 'EXCEL转PDF',
+                    icon: '\ue67a',
+                    source: 'EXCEL',
+                    target: 'PDF',
+                    formatType: [
+                        {
+                            label: 'pdf',
+                            value: 'PDF'
+                        }
+                    ]
+                }
+            ]
         }
     ];
 
