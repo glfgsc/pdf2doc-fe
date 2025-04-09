@@ -6,7 +6,7 @@
 }
 
 .title{
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     color: var(--color-text-base);
     margin-top: 20px;
@@ -19,54 +19,24 @@
     flex-wrap: wrap;
 }
 
-.childrenContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: var(--color-bg-subtle);
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
-    cursor: pointer;
-    margin-left: 20px;
-    margin-top: 20px;
-    width: 210px;
-    height: 180px;
-    &:hover{
-        box-shadow: 0.8px 0.8px 0.8px 0.8px rgba(0,0,0,0.05);
-    }
-
-    .childrenText{
-        font-size: 16px;
-        margin-top: 10px;
-    }
+.primaryIcon{
+    color: var(--color-primary);
 }
 
-.footer{
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    padding: 10px 0px 10px 0px;
-}
-
-.title{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-
-.modalHeader{
-    border-bottom: none !important;
-}
-
-.modalBody{
-    background: var(--color-bg-subtle);
-}
-
-.modalFooter{
-    border-top: none !important;
+.dangerIcon{
+    color: var(--color-danger);
 }
 
 .formatTypeRadio{
     margin-left: 20px;
+}
+
+.formContainer{
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.page{
+    margin-top: 20px;
 }

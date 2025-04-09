@@ -1,7 +1,7 @@
 import { IMenu } from '@/typings/main';
 import { Dropdown, Tooltip } from 'antd';
 import { MenuMode } from '@/constants';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './index.less';

@@ -3,6 +3,12 @@ export interface IFileTool{
     children: IFileToolChildren[]
 }
 
+export interface IFileToolOptions{
+    label: any,
+    options: IFileToolFormatTypeOptions[],
+    title: string
+}
+
 export interface IFileToolFormatTypeOptions{
     label: string,
     value: string

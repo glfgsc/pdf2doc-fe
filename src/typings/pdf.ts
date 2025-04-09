@@ -1,4 +1,5 @@
 import type { UploadFile } from 'antd';
+import { IFileToolFormatTypeOptions, IFileToolOptions } from '.';
 
 export interface IUploadPdfFile{
     file: UploadFile
@@ -17,5 +18,12 @@ export interface IConvertHistory {
 export interface IQueryHistoryParams {
     pageSize: number,
     pageNum: number,
-    creator: string | null
+    sources: string
+}
+
+export interface IDocumentMenuItem {
+    label: string,
+    key: string,
+    icon: any,
+    options: IFileToolOptions[]
 }
